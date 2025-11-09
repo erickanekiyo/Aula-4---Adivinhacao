@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinhação</title>
+    <link rel="stylesheet" href="guess.css">
+</head>
+<body>
+    <div class="container" id="interfc">
+        <h1>Jogo de Adivinhação</h1>
+        <p>Digite um número de <strong>0 a 99</strong> e tente adivinhar o valor</p>
+        
+        <input type="nmb" id="inputNmb" placeholder="Escreva aqui">
+        <button id="btnChute">Chutar</button>
+        
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const input = document.getElementById("inputNmb");
+        const msg = document.getElementById("result");
+        const btn = document.getElementById("btnChute");
+        const game = document.getElementById("interfc");
+
+        /*Gera numero aleatorio entre 0 e 99*/
+        const nmbSecreto = Math.floor(Math.random() * 100);
+        console.log("Número secreto: ", nmbSecreto); /*remove depois*/
+
+        btn.addEventListener("click", () => {
+        const chute = parseInt(input.value);
+
+        /*Verifica se a entrada esta certo*/
+        if (isNaN(chute) || chute < 0 || chute > 99) {
+            mensagem.textContent = "Digite um NÚMERO ENTRE 0 e 99!";
+            box.style.setProperty("background-color", "#ffcccc");
+            return;
+        }
+
+        /*Verificação do numero*/
+        if (chute === nmbSecreto) {
+            mensagem.textContent = "Você acertou!";
+            box.style.setProperty("background-color", "#b6fcb6");
+        } else if (chute < nmbSecreto) {
+            mensagem.textContent = "FRIO...";
+            box.style.setProperty("background-color", "#ffb6b6");
+        } else {
+            mensagem.textContent = "QUENTE!";
+            box.style.setProperty("background-color", "#ffb6b6");
+        }
+
+        /*reset*/
+        input.value = "";
+        input.focus();
+        });
+    </script>
+</body>
+</html>
